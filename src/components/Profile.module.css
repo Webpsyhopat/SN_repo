@@ -1,0 +1,12 @@
+.content {
+  grid-area: c;
+  background-color: hotpink;
+  }
+  
+  .top_large_img {
+    width: 900px;
+  }
+
+.item {
+  color: red;
+}
