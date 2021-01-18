@@ -1,0 +1,8 @@
+.footer {
+    grid-area: f;
+    background-color: rgb(133, 200, 245);
+    }
+    
+    .footer img {
+      width: 120px;
+    }

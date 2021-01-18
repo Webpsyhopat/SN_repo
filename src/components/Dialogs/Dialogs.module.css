@@ -1,0 +1,27 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas: "p m";
+}
+
+.dialogWith {
+    border-right: 1px solid gray;
+}
+
+.dialogPerson {
+    grid-area: p;
+    padding: 5px 10px;
+}
+
+.active {
+    color: goldenrod;
+    font-weight: bold;
+}
+
+.messages {
+    grid-area: m;
+}
+
+.message {
+    padding: 5px 10px;
+}

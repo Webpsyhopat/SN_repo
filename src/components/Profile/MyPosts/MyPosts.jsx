@@ -2,15 +2,29 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = () => {
+
+  let postsData = [
+    {id : 1, text : 'WoW, Wow. My first post!'},
+    {id : 2, text : 'Hi there! I am new here.'},
+    {id : 3, text : 'Blah Blah Blah'},
+    {id : 4, text : 'Итить-колотить. Напишите мне кто-нибудь'},
+  ]
+  let postsElements = postsData.map( p => <Post text = {p.text} />);
+
   return (
     <div>
-      My posts
-      <div>New post</div>
+      <h3>My posts</h3>
       <div>
-        <Post text = 'WoW, Wow. My first post!'/>
-        <Post text = 'Hi there! I am new here.'/>
-        <Post text = 'Blah Blah Blah'/>
-        <Post text = 'Итить-колотить. Напишите мне кто-нибудь'/>
+
+        <div>
+          <textarea></textarea>
+        </div>
+        <div>
+          <button>Написать</button>
+        </div>
+      </div>
+      <div className = {s.posts}>
+        {postsElements}
       </div>
     </div>
   )
