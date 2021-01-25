@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import AddMessage from './AddMessage/AddMessage';
 import s from './Dialogs.module.css';
 
 const Dialog = (props) => {
@@ -17,22 +18,8 @@ const Message = (props) => {
 }
 
 const Dialogs = (props) => {
-    let dialogsData = [
-        { name: 'Kent', id: 1 },
-        { name: 'Vanya', id: 2 },
-        { name: 'Petya', id: 3 },
-        { name: 'Glasha', id: 4 },
-        { name: 'Masha', id: 5 },
-        { name: 'Pasha', id: 6 }
-    ];
-
-    let messagesData = [
-        { id: 1, message: 'Hi there!' },
-        { id: 2, message: 'How Are You?' },
-        { id: 3, message: "Let's speak about something" },
-        { id: 4, message: 'Why are You so quite?' }
-
-    ];
+    let dialogsData = props.state.dialogsData;
+    let messagesData = props.state.messagesData;
 
     let dialogsElements = dialogsData.map(d => <Dialog name={d.name} id={d.id} />);
     let messagesElements = messagesData.map(m => <Message message={m.message} />);
@@ -44,6 +31,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
+                <AddMessage state = {props.state} dispatch = {props.dispatch}/>
             </div>
         </div>
     )

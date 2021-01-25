@@ -1,0 +1,31 @@
+.nav {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    }
+
+    .item {
+        position: relative;
+        width: 100%;
+        /* padding: 5px 0px; */
+       
+    }
+
+.item a {
+    color: #2f2f2f;
+    text-decoration: none;
+    display: block;
+    padding: 10px 20px;
+}
+
+.item a:hover {
+    /* padding-left: 25px; */
+    font-weight: bold;
+    /* border-bottom: 1px solid #e1e8ed; */
+}
+
+.item a.active {
+    /* background-color: #f5f5f5; */
+    /* border-bottom: 1px solid #e1e8ed; */
+    padding-left: 25px;
+}

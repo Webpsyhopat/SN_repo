@@ -1,0 +1,18 @@
+.sidebar {
+    grid-area: n;
+    background-color: #fff;
+    /* padding: 10px; */
+    /* min-height: 100%; */
+    margin-top: 30px;
+
+    }
+
+.sidebarItem {
+    background-color: #fafafa;
+    width: 100%;
+    padding: 10px 0px;
+    border: 1px solid #e1e8ed;
+    border-radius: 2%;
+    margin-right: 10px;
+    margin-bottom: 40px;
+    }

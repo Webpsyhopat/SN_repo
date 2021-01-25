@@ -3,7 +3,8 @@ import s from './Header.module.css';
 const Header = () => {
     return (
         <header className={s.header}>
-            <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xE8fEA6b9OuImCsqbVXW-YcwBKPAnZ7Epw&usqp=CAU' />
+            <img src='/img/logo.png' alt = 'logotype' className = {s.logoImg}/>
+            <span className = {s.logoText}>SocialNet</span>
         </header>
     )
 }
