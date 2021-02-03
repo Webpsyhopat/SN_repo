@@ -1,4 +1,4 @@
-import AddPost from './AddPost/AddPost';
+import AddPostContainer from './AddPost/AddPostContainer';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
@@ -8,7 +8,7 @@ const MyPosts = (props) => {
   return (
     <div>
       <h3>My posts</h3>
-      <AddPost state = {props.state} dispatch = {props.dispatch} />
+      <AddPostContainer />
       <div className={s.posts}>
         {postsElements}
       </div>

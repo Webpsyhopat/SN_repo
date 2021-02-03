@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import AddMessage from './AddMessage/AddMessage';
+import AddMessageContainer from './AddMessage/AddMessageContainer';
 import s from './Dialogs.module.css';
 
 const Dialog = (props) => {
@@ -31,7 +31,7 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messagesElements}
-                <AddMessage state = {props.state} dispatch = {props.dispatch}/>
+                <AddMessageContainer />
             </div>
         </div>
     )

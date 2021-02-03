@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import s from './Friendsbar.module.css';
 
 const Friend = (props) => {
@@ -10,7 +9,7 @@ const Friend = (props) => {
     )
 }
 
-function Friendsbar(props) {
+function FriendsBar(props) {
     let friendsList = props.state.map( f => <Friend name = {f.name} ava = {f.id}/>)
     return (
         <div className = {s.friendsBar}>
@@ -24,4 +23,4 @@ function Friendsbar(props) {
     )
 }
 
-export default Friendsbar;
+export default FriendsBar;

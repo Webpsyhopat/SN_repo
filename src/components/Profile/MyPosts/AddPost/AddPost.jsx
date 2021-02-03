@@ -1,16 +1,13 @@
 import s from './AddPost.module.css';
-import React from 'react';
-import { addPostCreator, updatePostTextCreator } from '../../../../redux/profilePageReducer';
 
 const AddPost = (props) => {
-
     const addPost = () => {
-        props.dispatch(addPostCreator());
+        props.addPost();
     }
 
     const changePostText = (e) => {
         let text = e.target.value;
-        props.dispatch(updatePostTextCreator(text));
+        props.changePostText(text);
     }
     
     return (

@@ -1,16 +1,14 @@
 import s from './AddMessage.module.css';
-import React from 'react';
-import { sendMessageCreator, updateMessageTextCreator } from '../../../redux/dialogsPageReducer';
 
 const AddMessage = (props) => {
 
     const addMessage = () => {
-        props.dispatch (sendMessageCreator());
+        props.addMessage();
     }
 
     const updateTextField = (e) => {
         let text = e.target.value;
-        props.dispatch(updateMessageTextCreator(text));
+        props.updateTextField(text);
     }
     return (
         <div>

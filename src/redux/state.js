@@ -11,21 +11,6 @@ let store = {
                 { id: 3, text: 'Blah Blah Blah' },
                 { id: 4, text: 'Итить-колотить. Напишите мне кто-нибудь' },
             ],
-
-            /* addPosts: function () {
-                this.postsData.push(
-                    {
-                        id: 5,
-                        text: this.postText,
-                    }
-                );
-                this.postTextUpdate('');
-                RenderEntireTree(state);
-            },
-            postTextUpdate: function (changedText) {
-                this.postText = changedText;
-                RenderEntireTree(state);
-            }, */
             postText: '',
 
         },
@@ -44,21 +29,6 @@ let store = {
                 { id: 3, message: "Let's speak about something" },
                 { id: 4, message: 'Why are You so quite?' },
             ],
-            /* addMessages: function () {
-                this.messagesData.push(
-                    {
-                        id: 5,
-                        message: this.messageText,
-                    }
-                );
-                this.messageTextUpdate('');
-                RenderEntireTree(state);
-            },
-            messageTextUpdate: function (changedText) {
-                this.messageText = changedText;
-                RenderEntireTree(state);
-            },
-            messageText: '', */
         },
         sidebarBlocksData: {
             friendsOnline: [
@@ -69,9 +39,9 @@ let store = {
         },
     },
     dispatch: function (action) {
-        this.state.dialogsPage = dialogsPageReduce(action, this.state.dialogsPage);
-        this.state.profilePage = profilePageReduce(action, this.state.profilePage);
-        this.state.sidebarBlocksData = sidebarBlocksDataReduce(action, this.state.sidebarBlocksData);
+        this.state.dialogsPage = dialogsPageReduce(this.state.dialogsPage, action);
+        this.state.profilePage = profilePageReduce(this.state.profilePage, action);
+        this.state.sidebarBlocksData = sidebarBlocksDataReduce(this.state.sidebarBlocksData, action);
         RenderEntireTree(store);
     }
 }

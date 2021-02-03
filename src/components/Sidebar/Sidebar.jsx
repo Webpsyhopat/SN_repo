@@ -1,14 +1,14 @@
 import { Route } from "react-router-dom";
-import Friendsbar from "./Friendsbar/Friendsbar";
+import FriendsBarConteiner from "./Friendsbar/FriendsBarConteiner";
 import Navbar from "./Navbar/Navbar";
 import s from './Sidebar.module.css';
 
-const Sidebar = (props) => {
+const Sidebar = () => {
     return (
         <div className = {s.sidebar}>
             <div className = {s.sidebarItem}><Navbar /></div>
-            <Route path='/profile' render = {() => <div className = {s.sidebarItem}><Friendsbar state = {props.state.friendsOnline}/></div>} />
-            
+            <Route path='/profile' 
+                render={() => <div className={s.sidebarItem}><FriendsBarConteiner /></div>} />
         </div>
     )
 }
