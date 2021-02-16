@@ -1,5 +1,4 @@
 import './App.css';
-import Header from './components/Header/Header';
 import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -9,19 +8,20 @@ import Settings from './components/Settings/Settings';
 import Footer from './components/Footer/Footer';
 import { Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 function App() {
   return (
 
     <div className="wrapper">
-      <Header />
+      <HeaderContainer />
       <Sidebar />
       <div className='content'>
         <Route path='/dialogs'>
           <DialogsContainer />
         </Route>
-        <Route path='/profile'>
+        <Route path='/profile/:userId?'>
           <Profile />
         </Route>
         <Route path='/news' component={News} />

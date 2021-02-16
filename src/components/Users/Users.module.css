@@ -2,3 +2,17 @@
     width: 80px;
     border-radius: 50%;
 }
+
+.selectedPage {
+    font-weight: bold;
+}
+
+.pages {
+    padding: 2px;
+    display: inline-block;
+}
+
+.usersPage {
+    max-width: 1200px;
+}
+

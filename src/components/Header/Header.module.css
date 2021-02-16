@@ -2,8 +2,22 @@
   grid-area: h;
   background-color: #f5f5f5;
   border-bottom: 1px solid #e1e8ed;
-  padding: 10px 15px;
+  /* padding: 10px 15px; */
+  margin: 0px;
+  display: grid;
+  grid-template-columns: 280px auto;
+    grid-template-rows: 100px auto;
+    
+  grid-gap: 0px;
 }
+
+.logo {
+  /* border: 1px solid red; */
+  height: 35px;
+  margin:  10px 15px;
+  padding: 0;
+}
+
 
 .logoImg {
   height: 35px;
@@ -18,4 +32,41 @@
   color: #088dcd;
   /* -webkit-text-stroke: 1px #088dcd; */
   vertical-align: super;
+}
+
+.userMenuBlock {
+  /* border: 1px solid green; */
+  height: 45px;
+  margin:  5px 15px;
+  padding: 0;
+}
+
+.userMenu {
+  display: block;
+  float: right;
+  /* width: 100px; */
+  height: 26px;
+  margin: 4px 20px;
+  border-radius: 26px;
+  background-color: white;
+  border: 1px solid #088dcd;
+  cursor: pointer;
+  line-height: initial;
+  padding: 3px 10px 3px 4px;
+}
+
+.notAuth {
+  color: #088dcd;
+  font-size: 14px;
+  font-weight: bold;
+   display: block;
+  float: right;
+  /* width: 100px; */
+  height: 26px;
+  margin: 4px 20px;
+  background-color: white;
+  
+  cursor: pointer;
+  line-height: initial;
+  padding: 3px 10px;
 }

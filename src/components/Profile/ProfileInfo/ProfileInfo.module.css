@@ -1,14 +1,65 @@
-
-  
-  .top_large_img {
-    width: 99%;
+.mainImage {
+ width: 100%; /* Ширина области */
+ height: 160px; /* Высота области */
+ margin: 0; /* Обнуляем отступы */
+}
+.top_large_img {
+width: 100%; /* Ширина изображений */
+ height: 100%; /* Высота изображении */
+ object-fit: cover; /* Вписываем фотографию в область */
+ border-radius: 4px;
   }
 
 .item {
   color: red;
 }
 
-.descriptionBlock img {
-  width: 80px;
-  border-radius: 50%;
+.descriptionBlock {
+  color: #2f2f2f;
+  display: block;
 }
+
+.avaDiv {
+  display: inline-block;
+}
+
+.avatar {
+  width: 100px;
+  margin-top: -60px;
+  margin-left: 40px;
+  border: 4px solid white;
+  border-radius: 8px;
+}
+
+.userNameDiv {
+  display: contents;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.descriptionDiv {
+  background: #fafafa none repeat scroll 0 0;
+    border: 1px solid #e1e8ed;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 30px;
+    padding: 15px 20px 20px;
+    position: relative;
+    width: 100%;
+    z-index: 9;
+
+}
+
+.aboutDiv {
+  display: inline-block;
+    width: 100%;
+}
+
+.aboutDiv h4 {
+  display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    width: 100%;
+}
+

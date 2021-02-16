@@ -2,8 +2,8 @@ import s from './AddMessage.module.css';
 
 const AddMessage = (props) => {
 
-    const addMessage = () => {
-        props.addMessage();
+    const sendMessage = () => {
+        props.sendMessage();
     }
 
     const updateTextField = (e) => {
@@ -15,11 +15,11 @@ const AddMessage = (props) => {
             <div>
                 <textarea 
                 className = {s.textBox} 
-                onChange = {updateTextField}
+                    onChange={updateTextField}
                 value = {props.state.messageText}/>
             </div>
             <div>
-                <button onClick = { addMessage }>Say</button>
+                <button onClick = { sendMessage }>Say</button>
             </div>
         </div>
     )

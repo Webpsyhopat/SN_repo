@@ -2,14 +2,19 @@ import * as axios from 'axios';
 import s from './Users.module.css';
 import React from 'react';
 
-
 class Users extends React.Component {
-
-    componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users?count=50')
+    getUsers(page, count) {
+        let endPoint = 'https://social-network.samuraijs.com/api/1.0/users?page='+page+'&count='+count;
+        axios.get(endPoint)
             .then(response => {
                 this.props.initUsers(response.data.items);
+                this.props.changeCurrentPage(page);
+                this.props.setTotalCount(response.data.totalCount);
             });
+    }
+    componentDidMount() {
+        this.getUsers(1, this.props.state.count);
+
         // alert('component is mounted');
     }
     // componentDidUpdate() {
@@ -19,7 +24,18 @@ class Users extends React.Component {
     //     alert('Oh NOOOO!!!!');
     // }
     render() {
-        return <div>
+        let pages = [];
+        for (let i = 1; i <= Math.ceil(this.props.state.totalCount / this.props.state.count); i++) {
+            pages.push (i);
+        }
+       
+        return <div className = {s.usersPage}>
+            <div>
+                {pages.map( p => {
+                    return <span className={this.props.state.currentPage === p ? s.selectedPage : s.pages} 
+                    onClick={(e) => { this.getUsers(p, this.props.state.count)}}>{p}</span>
+                })}
+            </div>
             {
                 this.props.state.Users.map(u => <div key={u.id}>
                     <div>

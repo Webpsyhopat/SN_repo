@@ -41,7 +41,7 @@ let dialogsPageReduce = (state = initialState, action) => {
     }
 }
 
-export let sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export let updateMessageTextCreator = (newText) => ({ type: UPDATE_MESSAGE_TEXT, changedText: newText });
+export let sendMessage = () => ({ type: SEND_MESSAGE });
+export let updateTextField = (newText) => ({ type: UPDATE_MESSAGE_TEXT, changedText: newText });
 
 export default dialogsPageReduce;
