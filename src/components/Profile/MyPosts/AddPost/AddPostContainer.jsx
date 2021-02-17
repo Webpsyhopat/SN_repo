@@ -4,19 +4,9 @@ import AddPost from './AddPost';
 
 const mapStateToProps = (state) => {
     return {
-        state: state.profilePage
+        postText: state.profilePage.postText
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addPost: () => {dispatch(addPostCreator())},
-//         changePostText: (text) => {
-//             dispatch(updatePostTextCreator(text));
-//         }
-//     }
-// }
-
 
 let dispatches = { addPost, changePostText};
 const AddPostContainer = connect(mapStateToProps, dispatches)(AddPost);

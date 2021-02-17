@@ -1,48 +1,23 @@
 import { connect } from "react-redux";
-import { follow, initUsers, unfollow, changeCurrentPage, setTotalCount, startFetching, stopFetching } from "../../redux/usersPageReducer";
+import { followTC, unfollowTC, getUsersTC } from "../../redux/usersPageReducer";
 import Users from './Users';
 import React from 'react';
-import { apiRequest } from "../../dal/axios";
 
-class UsersAPI extends React.Component {
-    
-    getUsers(page, count) {
-        this.props.startFetching();
-        apiRequest.get('users?page=' + page + '&count=' + count)
-            .then(response => {
-                this.props.initUsers(response.data.items);
-                this.props.changeCurrentPage(page);
-                this.props.setTotalCount(response.data.totalCount);
-                this.props.stopFetching();
-            });
+class UsersInnerAPI extends React.Component {
 
-    }
     componentDidMount() {
-        this.getUsers(1, this.props.state.count);
+        this.props.getUsers(1, this.props.state.count);
+    }
 
-        // alert('component is mounted');
+    onPageChange = (page) => {
+        this.props.getUsers(page, this.props.state.count);
     }
-    follow(id, func) {
-        apiRequest.post('follow/' + id).then(response => {
-            debugger;
-            response.data.resultCode === 0 ? func(id) : alert('Can"t follow - error');
-        })
-    }
-    unfollow(id, func) {
-        apiRequest.delete('follow/' + id).then(response => {
-            response.data.resultCode === 0
-                ? func(id)
-                : alert('Can"t unfollow - error');
-        })
-    }
+
     render() {
         return <Users state={this.props.state}
-            getUsers={(...args) => this.getUsers(...args)}
-            follow={ this.follow}
-            unfollow={ this.unfollow}
-            follow2={this.props.follow}
-            unfollow2={this.props.unfollow}
-
+            onPageChange = {this.onPageChange}
+            follow={this.props.followTC}
+            unfollow={this.props.unfollowTC}
         />
     }
 }
@@ -51,8 +26,9 @@ const mapStateToProps = (state) => {
     return { state: state.usersPage }
 };
 
-let mapDispatchToProps = { follow, unfollow, initUsers, changeCurrentPage, setTotalCount, startFetching, stopFetching };
+let mapDispatchToProps = { followTC, unfollowTC,
+    getUsers: getUsersTC };
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersInnerAPI);
 
 export default UsersContainer;

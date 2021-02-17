@@ -9,4 +9,37 @@ let axiosParams = {
     withCredentials: true
 }
 
-export let apiRequest = axios.create(axiosParams); 
+export let apiRequest = axios.create(axiosParams);
+
+export let UserAPI = {
+    getUsers(page, count) {
+        return apiRequest.get('users?page=' + page + '&count=' + count)
+            .then(response => {
+                return response.data
+            })
+    },
+    follow(userId) {
+        return apiRequest.post('follow/' + userId).then(response => {
+            return response.data;
+        })
+    },
+    unfollow(userId) {
+        return apiRequest.delete('follow/' + userId).then(response => {
+            return response.data;
+        })
+    },
+    getUserProfile(userId) {
+        return apiRequest.get('profile/' + userId).then(response => {
+            return response.data;
+        })
+    }
+}
+
+export const AuthAPI = {
+    me() {
+        return apiRequest.get('/auth/me').then(response => {
+            return response.data;
+        }
+        )
+    }
+}

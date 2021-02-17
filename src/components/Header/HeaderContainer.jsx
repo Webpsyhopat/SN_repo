@@ -1,27 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { apiRequest } from '../../dal/axios';
-import { setAuth } from "../../redux/userDataReducer";
 import Header from './Header';
+import { authorizationCheckTC } from "../../redux/userDataReducer";
 
 class HeaderAPI extends React.Component {
-    authorizationCheck(){
-        apiRequest.get('/auth/me').then(response => {
-            // let { id, email, login } = response.data.data;
-            response.data.resultCode === 0 && this.props.setAuth(response.data.data); 
-        }
-        )
-    }
     componentDidMount(){
-        this.authorizationCheck();
+        this.props.authorizationCheckTC();
     }
     render(){
         return <Header {...this.props}/>
     }
 }
-
-
-
 
 const mapStateToProps = (state) => {
     return {
@@ -29,7 +18,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = { setAuth };
+let mapDispatchToProps = { authorizationCheckTC };
 
 let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderAPI);
 

@@ -1,12 +1,14 @@
+import { AuthAPI } from "../dal/axios";
+
 const SET_AUTH = 'SET_AUTH';
 
 let initialState = {
-userData:{
-    id: null,
-    email: null,
-    login:null,
-    isAuthorised: false
-},
+    userData: {
+        id: null,
+        email: null,
+        login: null,
+        isAuthorised: false
+    },
 
 };
 
@@ -15,14 +17,25 @@ let userDataReduce = (state = initialState, action) => {
         case SET_AUTH:
             return {
                 ...state,
-                userData: {...action.userData,
-                isAuthorised: true}
+                userData: {
+                    ...action.userData,
+                    isAuthorised: true
+                }
             }
         default:
             return state;
     }
 };
 
-export let setAuth = (userData) => ({ type: SET_AUTH, userData});
+let setAuth = (userData) => ({ type: SET_AUTH, userData });
+
+export const authorizationCheckTC = () => {
+    
+    return (dispatch) => {
+        AuthAPI.me().then(response => {
+            dispatch(setAuth(response.data))
+        })
+    }
+}
 
 export default userDataReduce;
