@@ -1,5 +1,7 @@
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
+import authChecker from '../../hoc/authChecker';
+import { compose } from 'redux';
 
 
 const mapStateToProps = (state) => {
@@ -11,6 +13,6 @@ const mapDispatchToProps = (dispatch) => {
     return {}
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
-
-export default DialogsContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps),
+    authChecker
+)(Dialogs);

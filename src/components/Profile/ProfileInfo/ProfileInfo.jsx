@@ -2,6 +2,7 @@ import Preload from '../../common/Preload';
 import s from './ProfileInfo.module.css';
 
 const ProfileInfo = (props) => {
+
   if(!props.state){
     <Preload />
   }

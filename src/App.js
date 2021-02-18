@@ -9,6 +9,7 @@ import Footer from './components/Footer/Footer';
 import { Route } from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />
         <Route path='/users' component={UsersContainer} />
+        <Route path='/login' component ={Login} />
         </div>
       <Footer />
     </div>

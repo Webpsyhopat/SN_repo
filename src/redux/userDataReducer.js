@@ -33,7 +33,9 @@ export const authorizationCheckTC = () => {
     
     return (dispatch) => {
         AuthAPI.me().then(response => {
+            if (response.resultCode === 0){
             dispatch(setAuth(response.data))
+            }
         })
     }
 }
