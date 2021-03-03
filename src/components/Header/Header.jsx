@@ -2,9 +2,9 @@ import { useState } from 'react';
 import s from './Header.module.css';
 
 const Header = (props) => {
-    let [userMenu, setUserMenu] = useState(false);
+    let [showUserMenu, setUserMenu] = useState(false);
 const toggleMenu = () => {
-    userMenu ? setUserMenu(false) : setUserMenu(true)
+    showUserMenu ? setUserMenu(false) : setUserMenu(true)
 }
 
     return (
@@ -16,7 +16,7 @@ const toggleMenu = () => {
                 {props.state.userData.isAuthorised
                     ? <div className={s.userMenu} onClick={toggleMenu}>
                         Hi, {props.state.userData.login}
-                        {userMenu ?<UserMenu {...props} /> : ''}
+                        {showUserMenu ?<UserMenu {...props} /> : ''}
                         </div>
                     : <div className={s.notAuth}>Sign in</div>}
             </div >

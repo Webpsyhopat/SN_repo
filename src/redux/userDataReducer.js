@@ -41,7 +41,6 @@ let setAuth = (userData) => ({ type: SET_AUTH, userData });
 let setServerError = (errorMessage, captchaURL) => ({ type: SET_SERVER_ERROR, errorMessage, captchaURL })
 
 export const authorizationCheckTC = () => {
-
     return (dispatch) => {
         AuthAPI.me().then(response => {
             if (response.resultCode === 0) {
