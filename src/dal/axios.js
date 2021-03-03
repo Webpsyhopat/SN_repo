@@ -29,17 +29,47 @@ export let UserAPI = {
         })
     },
     getUserProfile(userId) {
+        console.log('You are using an old method. Use ProfileAPI.getUserProfile instead');
+        return ProfileAPI.getUserProfile(userId);
+
+    }
+}
+
+export let ProfileAPI = {
+    getUserProfile(userId) {
         return apiRequest.get('profile/' + userId).then(response => {
             return response.data;
         })
+    },
+    getProfileStatus(userId) {
+        return apiRequest.get('profile/status/' + userId);
+    },
+    setProfileStatus(newStatus) {
+        debugger;
+        return apiRequest.put('profile/status/', { status: newStatus});
     }
 }
 
 export const AuthAPI = {
     me() {
-        return apiRequest.get('/auth/me').then(response => {
+        return apiRequest.get('auth/me').then(response => {
             return response.data;
         }
         )
+    },
+    login(email, password, rememberMe, captcha) {
+        return apiRequest.post('auth/login', { email, password, rememberMe, captcha}).then(response => {
+            return response.data;
+        }
+        )
+    },
+    logout() {
+        return apiRequest.delete('auth/login').then(response => {
+            return response.data;
+        }
+        )
+    },
+    getCaptcha(){
+        return apiRequest.get('security/get-captcha-url');
     }
 }

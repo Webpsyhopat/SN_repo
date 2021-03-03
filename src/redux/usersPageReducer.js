@@ -69,7 +69,7 @@ let usersPageReduce = (state = initialState, action) => {
                 ...state,
                 followingUsersForDisable: action.isInProgress
                     ? [...state.followingUsersForDisable, action.userId]
-                    : state.followingUsersForDisable.filter(id => id != action.userId)
+                    : state.followingUsersForDisable.filter(id => id !== action.userId)
             }
         default: return state;
     }

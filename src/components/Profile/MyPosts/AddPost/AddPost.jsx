@@ -1,22 +1,48 @@
 import s from './AddPost.module.css';
+import { Formik } from 'formik';
+
+const AddPostForm = (props) => {
+    return (
+        <Formik
+            initialValues={{ postText: '' }}
+            onSubmit={(values, actions) => {
+                props.addPost(values.postText);
+                actions.setSubmitting(false);
+                actions.resetForm({
+                    values: {
+                        postText: ''
+                    }
+                });
+            }}>
+            {({
+                values,
+                handleChange,
+                handleSubmit,
+                isSubmitting,
+                /* and other goodies */
+            }) => (
+                <form onSubmit={handleSubmit}>
+
+                    <textarea
+                        name= 'postText'
+                        className={s.textBox}
+                        value={values.postText}
+                        onChange={handleChange}
+                    />
+
+                    <button type="submit" disabled={isSubmitting}>
+                        Say
+                    </button>
+                </form>
+            )}
+        </Formik>
+    )
+}
 
 const AddPost = (props) => {
-
-    const changePostText = (e) => {
-        props.changePostText(e.target.value);
-    }
-
     return (
         <div>
-            <div>
-                <textarea
-                    className={s.textBox}
-                    value={props.postText}
-                    onChange={changePostText} />
-            </div>
-            <div>
-                <button onClick={props.addPost} >Say</button>
-            </div>
+            <AddPostForm {...props} />
         </div>
     )
 }

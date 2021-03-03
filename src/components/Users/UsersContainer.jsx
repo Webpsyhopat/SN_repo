@@ -2,8 +2,10 @@ import { connect } from "react-redux";
 import { followTC, unfollowTC, getUsersTC } from "../../redux/usersPageReducer";
 import Users from './Users';
 import React from 'react';
+import { compose } from "redux";
+import authChecker from "../../hoc/authChecker";
 
-class UsersInnerAPI extends React.Component {
+class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.getUsers(1, this.props.state.count);
@@ -15,20 +17,17 @@ class UsersInnerAPI extends React.Component {
 
     render() {
         return <Users state={this.props.state}
-            onPageChange = {this.onPageChange}
+            onPageChange={this.onPageChange}
             follow={this.props.followTC}
             unfollow={this.props.unfollowTC}
         />
     }
 }
 
-const mapStateToProps = (state) => {
-    return { state: state.usersPage }
-};
+const mapStateToProps = (state) => {return { state: state.usersPage }};
 
-let mapDispatchToProps = { followTC, unfollowTC,
-    getUsers: getUsersTC };
+let mapDispatchToProps = {followTC, unfollowTC,getUsers: getUsersTC};
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersInnerAPI);
-
-export default UsersContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps),
+    authChecker
+)(UsersContainer);

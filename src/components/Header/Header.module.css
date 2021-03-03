@@ -55,6 +55,21 @@
   padding: 3px 10px 3px 4px;
 }
 
+.underMenu {
+  display:block;
+  z-index: 90;
+  position: relative;
+  text-align: center;
+  margin: 10px 0 0 6px;
+  border: 1px solid #088dcd;
+}
+
+.underMenu span {
+  display:block;
+  margin: 2px 4px;
+  border-bottom: 1px solid #088dcd;
+}
+
 .notAuth {
   color: #088dcd;
   font-size: 14px;

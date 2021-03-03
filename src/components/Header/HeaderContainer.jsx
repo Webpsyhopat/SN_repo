@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { authorizationCheckTC } from "../../redux/userDataReducer";
+import { authorizationCheckTC, LogoutTC } from "../../redux/userDataReducer";
 
 class HeaderAPI extends React.Component {
     componentDidMount(){
@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-let mapDispatchToProps = { authorizationCheckTC };
+let mapDispatchToProps = { authorizationCheckTC, LogoutTC };
 
 let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderAPI);
 

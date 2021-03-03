@@ -1,5 +1,4 @@
 const SEND_MESSAGE = 'SEND-MESSAGE';
-const UPDATE_MESSAGE_TEXT = 'UPDATE-MESSAGE-TEXT';
 
 let initialState = {
     dialogsData: [
@@ -15,25 +14,17 @@ let initialState = {
         { id: 2, message: 'How Are You?' },
         { id: 3, message: "Let's speak about something" },
         { id: 4, message: 'Why are You so quite?' },
-    ],
-    messageText: ''
+    ]
 }
 
 let dialogsPageReduce = (state = initialState, action) => {
     switch (action.type) {
 
         case SEND_MESSAGE:
-            let message = { id: 5, message: state.messageText };
+            let message = { id: 5, message: action.newMessageText };
             return {
                 ...state,
-                messagesData: [...state.messagesData, message],
-                messageText: ''
-            }
-
-        case UPDATE_MESSAGE_TEXT:
-            return {
-                ...state,
-                messageText: action.changedText
+                messagesData: [...state.messagesData, message]
             }
             
         default:
@@ -41,7 +32,6 @@ let dialogsPageReduce = (state = initialState, action) => {
     }
 }
 
-export let sendMessage = () => ({ type: SEND_MESSAGE });
-export let updateTextField = (newText) => ({ type: UPDATE_MESSAGE_TEXT, changedText: newText });
+export let sendMessage = (newMessageText) => ({ type: SEND_MESSAGE, newMessageText });
 
 export default dialogsPageReduce;

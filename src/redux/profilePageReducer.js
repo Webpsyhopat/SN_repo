@@ -1,8 +1,8 @@
-import { UserAPI } from "../dal/axios";
+import { ProfileAPI } from "../dal/axios";
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
     userProfile: {
@@ -24,6 +24,7 @@ let initialState = {
             small: null,
             large: null
         }
+
     },
     postsData: [
         { id: 1, text: 'WoW, Wow. My first post!' },
@@ -31,28 +32,26 @@ let initialState = {
         { id: 3, text: 'Blah Blah Blah' },
         { id: 4, text: 'Итить-колотить. Напишите мне кто-нибудь' },
     ],
-    postText: '',
+    profileStatus: '',
 }
 
 let profilePageReduce = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            let post = state.postText;
+            let post = action.postText;
             return {
                 ...state,
-                postsData: [...state.postsData, { id: 5, text: post }],
-                postText: ''
-            }
-
-        case UPDATE_POST_TEXT:
-            return {
-                ...state,
-                postText: action.changedText
+                postsData: [...state.postsData, { id: 5, text: post }]
             }
         case SET_USER_PROFILE:
             return {
                 ...state,
                 userProfile: { ...action.userProfile }
+            }
+        case SET_STATUS:
+            return {
+                ...state,
+                profileStatus: action.status
             }
         default:
             return state;
@@ -60,18 +59,36 @@ let profilePageReduce = (state = initialState, action) => {
 
 }
 
-export let addPost = () => ({ type: ADD_POST });
-export let changePostText = (changedText) => ({ type: UPDATE_POST_TEXT, changedText });
-export let setUserProfile = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
+export let addPost = (postText) => ({ type: ADD_POST, postText});
+let setUserProfile = (userProfile) => ({ type: SET_USER_PROFILE, userProfile });
+let setProfileStatus = (status) => ({ type: SET_STATUS, status });
 
 export const getUserProfileTC = (userId) => {
     return (dispatch) => {
-        UserAPI.getUserProfile(userId).then(response => {
-            debugger;
-            dispatch(setUserProfile(response))
+        ProfileAPI.getUserProfile(userId).then(response => {
+            dispatch(setUserProfile(response));
+            dispatch(getProfileStatusTC(userId));
         })
     }
 }
 
+export const setProfileStatusTC = (newStatus) => {
+    return (dispatch) => {
+        ProfileAPI.setProfileStatus(newStatus).then(response => {
+            debugger;
+            if (response.resultCode === 0) {
+                dispatch(setProfileStatus(newStatus));
+            }
+        })
+    }
+}
+
+const getProfileStatusTC = (userId) => {
+    return (dispatch) => {
+        ProfileAPI.getProfileStatus(userId).then(response => {
+            dispatch(setProfileStatus(response.data ? response.data : 'set your status'));
+        })
+    }
+}
 
 export default profilePageReduce;

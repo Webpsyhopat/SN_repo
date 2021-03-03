@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { sendMessage, updateTextField } from '../../../redux/dialogsPageReducer';
+import { sendMessage } from '../../../redux/dialogsPageReducer';
 import AddMessage from './AddMessage';
 
 const mapStateToProps = (state) => {
@@ -8,14 +8,7 @@ const mapStateToProps = (state) => {
     } 
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         addMessage: () => { dispatch(sendMessageCreator()) },
-//         updateTextField: (text) => {dispatch(updateMessageTextCreator(text))}
-//     }
-// }
-
-let dispatches = { sendMessage, updateTextField}
+let dispatches = { sendMessage}
 
 const AddMessageContainer = connect(mapStateToProps, dispatches)(AddMessage);
 

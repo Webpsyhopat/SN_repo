@@ -11,7 +11,7 @@ let authChecker = (Component) => {
   class wrappedComp extends React.Component {
 
     render(){
-      if (!this.props.isAuthorised) { return <Redirect to='./login' />}
+      if (!this.props.isAuthorised) { return <Redirect to='/login' />}
       return <Component {...this.props} />
     }
  }

@@ -23,7 +23,7 @@ const Users = (props) => {
                     <div>
                         <img className={s.avatarImg} src={u.photos.small != null 
                             ? u.photos.small 
-                            : '/user_avatars/no_photo.png'} />
+                            : '/user_avatars/no_photo.png'} alt = 'user_avatar' />
                     </div>
                     {u.followed
                         ? <button disabled={props.state.followingUsersForDisable.some(id => id === u.id)} onClick={() => props.unfollow(u.id)}>Unfollow</button>

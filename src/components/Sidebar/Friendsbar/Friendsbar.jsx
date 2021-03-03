@@ -3,7 +3,7 @@ import s from './Friendsbar.module.css';
 const Friend = (props) => {
     return (
         <div className = {s.item}>
-            <img src = {`/user_avatars/${props.ava}.jpg`} />
+            <img src = {`/user_avatars/${props.ava}.jpg`} alt = 'user_avatar'/>
             <div className = {s.itemName}>{props.name}</div>
         </div>
     )
