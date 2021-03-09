@@ -28,8 +28,10 @@ let userDataReduce = (state = initialState, action) => {
         case SET_SERVER_ERROR: {
             return {
                 ...state,
-                authError: {authErrorMessage: action.errorMessage[0],
-                    captchaURL: action.captchaURL}
+                authError: {
+                    authErrorMessage: action.errorMessage[0],
+                    captchaURL: action.captchaURL
+                }
             }
         }
         default:
@@ -52,15 +54,21 @@ export const authorizationCheckTC = () => {
     }
 }
 
-export const LoginTC = (email, password, rememberMe, captcha) => {
+const GetCaptcha = () => {
+    return (dispatch) => {
+        AuthAPI.getCaptcha().then(response => {
+            dispatch(setServerError(['Введите символы с картинки:'], response.data.url));
+        })
+    }
+}
+
+export const LoginTC = (email, password, rememberMe = false, captcha = null) => {
     return (dispatch) => {
         AuthAPI.login(email, password, rememberMe, captcha).then(response => {
             if (response.resultCode === 0) {
                 dispatch(authorizationCheckTC());
             } else if (response.resultCode === 10) {
-                AuthAPI.getCaptcha().then(response => {
-                    dispatch(setServerError(['Введите символы с картинки:'], response.data.url));
-                })
+                GetCaptcha();
             } else {
                 let captchaURL = null;
                 dispatch(setServerError(response.messages, captchaURL));
